@@ -20,7 +20,7 @@
         <Label Content="Object_Title" HorizontalAlignment="Left" Margin="833,88,0,0" VerticalAlignment="Top" Width="128" Height="36" FontSize="20"/>
         <Button Content="Focus" HorizontalAlignment="Left" Height="22" Margin="979,409,0,0" VerticalAlignment="Top" Width="60" Click="Button_Click_1" RenderTransformOrigin="0.222,0.456"/>
         <ListBox x:Name="objectList" HorizontalAlignment="Left" Height="149" Margin="833,409,0,0" VerticalAlignment="Top" Width="128"/>
-        <Button Content="Add Object" HorizontalAlignment="Left" Margin="833,186,0,0" VerticalAlignment="Top" Width="128" Height="41" Click="Button_Click_2"/>
+        <Button Content="Add Route" HorizontalAlignment="Left" Margin="833,186,0,0" VerticalAlignment="Top" Width="128" Height="41" Click="Button_Click_2"/>
         <Label Content="Result" HorizontalAlignment="Left" Height="29" Margin="833,375,0,0" VerticalAlignment="Top" Width="70" FontSize="16"/>
         <TextBox x:Name="searchTitle" HorizontalAlignment="Left" Height="40" Margin="833,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" FontSize="18"/>
         <Label Content="Search by title" HorizontalAlignment="Left" Margin="833,242,0,0" VerticalAlignment="Top" Width="206" Height="32" FontSize="18"/>

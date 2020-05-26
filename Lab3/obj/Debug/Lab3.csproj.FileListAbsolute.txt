@@ -27,3 +27,33 @@ C:\Users\Виктория\source\repos\oop\lab3\Lab3\Lab3\obj\Debug\Lab3.csproj.
 C:\Users\Виктория\source\repos\oop\lab3\Lab3\Lab3\obj\Debug\Lab3.exe
 C:\Users\Виктория\source\repos\oop\lab3\Lab3\Lab3\obj\Debug\Lab3.pdb
 C:\Users\Виктория\source\repos\oop\lab3\Lab3\Lab3\obj\Debug\Lab3.csprojAssemblyReference.cache
+D:\Program\4 семестр\Lab3\Lab3\bin\Debug\Lab3.exe.config
+D:\Program\4 семестр\Lab3\Lab3\bin\Debug\Lab3.exe
+D:\Program\4 семестр\Lab3\Lab3\bin\Debug\Lab3.pdb
+D:\Program\4 семестр\Lab3\Lab3\bin\Debug\EntityFramework.dll
+D:\Program\4 семестр\Lab3\Lab3\bin\Debug\EntityFramework.SqlServer.dll
+D:\Program\4 семестр\Lab3\Lab3\bin\Debug\GMap.NET.Core.dll
+D:\Program\4 семестр\Lab3\Lab3\bin\Debug\GMap.NET.WindowsForms.dll
+D:\Program\4 семестр\Lab3\Lab3\bin\Debug\GMap.NET.WindowsPresentation.dll
+D:\Program\4 семестр\Lab3\Lab3\bin\Debug\Newtonsoft.Json.dll
+D:\Program\4 семестр\Lab3\Lab3\bin\Debug\System.Data.SQLite.dll
+D:\Program\4 семестр\Lab3\Lab3\bin\Debug\System.Data.SQLite.EF6.dll
+D:\Program\4 семестр\Lab3\Lab3\bin\Debug\System.Data.SQLite.Linq.dll
+D:\Program\4 семестр\Lab3\Lab3\bin\Debug\EntityFramework.xml
+D:\Program\4 семестр\Lab3\Lab3\bin\Debug\EntityFramework.SqlServer.xml
+D:\Program\4 семестр\Lab3\Lab3\bin\Debug\Newtonsoft.Json.xml
+D:\Program\4 семестр\Lab3\Lab3\bin\Debug\System.Data.SQLite.xml
+D:\Program\4 семестр\Lab3\Lab3\bin\Debug\System.Data.SQLite.dll.config
+D:\Program\4 семестр\Lab3\Lab3\obj\Debug\Lab3.csprojAssemblyReference.cache
+D:\Program\4 семестр\Lab3\Lab3\obj\Debug\MainWindow.g.cs
+D:\Program\4 семестр\Lab3\Lab3\obj\Debug\App.g.cs
+D:\Program\4 семестр\Lab3\Lab3\obj\Debug\Lab3_MarkupCompile.cache
+D:\Program\4 семестр\Lab3\Lab3\obj\Debug\Lab3_MarkupCompile.lref
+D:\Program\4 семестр\Lab3\Lab3\obj\Debug\MainWindow.baml
+D:\Program\4 семестр\Lab3\Lab3\obj\Debug\Lab3.g.resources
+D:\Program\4 семестр\Lab3\Lab3\obj\Debug\Lab3.Properties.Resources.resources
+D:\Program\4 семестр\Lab3\Lab3\obj\Debug\Lab3.csproj.GenerateResource.cache
+D:\Program\4 семестр\Lab3\Lab3\obj\Debug\Lab3.csproj.CoreCompileInputs.cache
+D:\Program\4 семестр\Lab3\Lab3\obj\Debug\Lab3.csproj.CopyComplete
+D:\Program\4 семестр\Lab3\Lab3\obj\Debug\Lab3.exe
+D:\Program\4 семестр\Lab3\Lab3\obj\Debug\Lab3.pdb

@@ -15,10 +15,29 @@ namespace Lab3
     public class CHuman : CMapObject
     {
         private PointLatLng point;
+        private PointLatLng destination;
+        public GMapMarker humMarker;
+
+        public event EventHandler passSeated;
 
         public CHuman(string title, PointLatLng point) : base(title)
         {
             this.point = point;
+        }
+
+        public void setPosition(PointLatLng point)
+        {
+            this.point = point;
+        }
+
+        public PointLatLng getDestination()
+        {
+            return destination;
+        }
+
+        public void moveTo(PointLatLng dest)
+        {
+            destination = dest;
         }
 
         public override double getDistance(PointLatLng point)
@@ -47,7 +66,14 @@ namespace Lab3
                 }
             };
 
+            humMarker = marker;
+
             return marker;
+        }
+
+        public void CarArrived(object sender, EventArgs e)
+        {
+            passSeated?.Invoke(this, EventArgs.Empty);
         }
     }
 }

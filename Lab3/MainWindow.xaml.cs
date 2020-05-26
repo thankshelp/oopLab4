@@ -28,6 +28,15 @@ namespace Lab3
 
         List<PointLatLng> pts = new List<PointLatLng>();
 
+        CCar car = null;
+        CHuman h = null;
+        CLocation l = null;
+        public GMapMarker carMarker = null;
+        public GMapMarker humMarker = null;
+        public GMapMarker locMarker = null;
+
+        //GMapMarker dst;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -61,8 +70,8 @@ namespace Lab3
             {
                 PointLatLng point = Map.FromLocalToLatLng((int)e.GetPosition(Map).X, (int)e.GetPosition(Map).Y);
 
-                pts.Add(point);
-                
+                //pts.Add(point);
+
                 double distance1;
                 double distance2;
 
@@ -99,8 +108,86 @@ namespace Lab3
                 PointLatLng point = Map.FromLocalToLatLng((int)e.GetPosition(Map).X, (int)e.GetPosition(Map).Y);
 
                 pts.Add(point);
-            }
 
+                if (objType.SelectedIndex > -1)
+                {
+                    if (objType.SelectedIndex == 0)
+                    {
+                        if (car == null)
+                        {
+                            car = new CCar(objTitle.Text, point, Map);
+                            objs.Add(car);
+                            carMarker = car.getMarker();
+
+                            if (h != null)
+                            {
+                                car.Arrived += h.CarArrived;
+                                h.passSeated += car.passSeated;
+
+                            }
+                            else
+                            {
+                                car.setPosition(point);
+                                carMarker.Position = point;
+                            }
+                        }
+                    }
+
+                    if (objType.SelectedIndex == 1)
+                    {
+                        if (h == null)
+                        {
+                            h = new CHuman(objTitle.Text, point);
+                            objs.Add(h);
+                            humMarker = h.getMarker();
+
+                            if (car != null)
+                            {
+                                car.Arrived += h.CarArrived;
+                                h.passSeated += car.passSeated;
+                            }
+                            else
+                            {
+                                h.setPosition(point);
+                                humMarker.Position = point;
+                            }
+                        }
+
+                    }
+
+                    if (objType.SelectedIndex == 2)
+                    {
+                        if ((h != null) && (l == null))
+                        {
+                            h.moveTo(point);
+
+                            
+                            l = new CLocation(objTitle.Text, point);
+                            objs.Add(l);
+                            locMarker = l.getMarker();
+                            
+                        }
+                    }
+
+                    if (objType.SelectedIndex == 3)
+                    {
+                        CArea a = new CArea(objTitle.Text, pts);
+                        objs.Add(a);
+                        Map.Markers.Add(a.getMarker());
+                    }
+
+                    Map.Markers.Clear();
+
+                    foreach (CMapObject cm in objs)
+                    {
+                        Map.Markers.Add(cm.getMarker());
+                    }
+
+                    //Map.Markers.Add(dst);
+
+                    pts.Clear();
+                }
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -146,41 +233,7 @@ namespace Lab3
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            if (objType.SelectedIndex > -1)
-            {
-                if (objType.SelectedIndex == 0)
-                {
-                    CCar car = new CCar(objTitle.Text, pts[0]);
-                    objs.Add(car);
-                    Map.Markers.Add(car.getMarker());
-                }
-            }
-            if (objType.SelectedIndex == 4)
-            {
-                CRoute r = new CRoute(objTitle.Text, pts);
-                objs.Add(r);
-                Map.Markers.Add(r.getMarker());
-            }
-            if (objType.SelectedIndex == 1)
-            {
-                CHuman h = new CHuman(objTitle.Text, pts[0]);
-                objs.Add(h);
-                Map.Markers.Add(h.getMarker());
-            }
-            if (objType.SelectedIndex == 2)
-            {
-                CLocation l = new CLocation(objTitle.Text, pts[0]);
-                objs.Add(l);
-                Map.Markers.Add(l.getMarker());
-            }
-            if (objType.SelectedIndex == 3)
-            {
-                CArea a = new CArea(objTitle.Text, pts);
-                objs.Add(a);
-                Map.Markers.Add(a.getMarker());
-            }
-
-            pts.Clear();
+            Map.Markers.Add(car.moveTo(h.getFocus()));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

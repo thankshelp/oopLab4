@@ -24,6 +24,12 @@ namespace Lab3
                 this.points.Add(p);
             }
         }
+
+        public List<PointLatLng> getPoints()
+        {
+            return points;
+        }
+
         public override double getDistance(PointLatLng point)
         {
             GeoCoordinate p1 = new GeoCoordinate(point.Lat, point.Lng);

@@ -40,8 +40,8 @@ namespace Lab3
             {
                 Shape = new Image
                 {
-                    Width = 32, // ширина маркера
-                    Height = 32, // высота маркера
+                    Width = 45, // ширина маркера
+                    Height = 45, // высота маркера
                     ToolTip = this.getTitle(), // всплывающая подсказка
                     Source = new BitmapImage(new Uri("pack://application:,,,/image/pizza.png")) // картинка
                 }
