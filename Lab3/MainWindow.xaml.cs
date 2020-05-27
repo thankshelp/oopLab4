@@ -93,8 +93,8 @@ namespace Lab3
                 {
                     if (objType.SelectedIndex == 0)
                     {
-                        if (car == null)
-                        {
+                        //if (car == null)
+                        
                             car = new CCar(objTitle.Text, point, Map);
                             objs.Add(car);
                             cars.Add(car);
@@ -111,7 +111,7 @@ namespace Lab3
                                 car.setPosition(point);
                                 carMarker.Position = point;
                             }
-                        }
+                        
                     }
 
                     if (objType.SelectedIndex == 1)
@@ -193,8 +193,8 @@ namespace Lab3
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            foreach(CCar cr in cars)
-            {
+            //foreach(CCar cr in cars)
+            
                 double distance1;
                 double distance2;
 
@@ -204,8 +204,8 @@ namespace Lab3
 
                     for (int j = n + 1; j < cars.Count; j++)
                     {
-                        distance1 = cars[j].getDistance(p);
-                        distance2 = cars[min_i].getDistance(p);
+                        distance1 = cars[j].getDistance(h.getFocus());
+                        distance2 = cars[min_i].getDistance(h.getFocus());
 
                         if (distance2 > distance1)
                         {
@@ -219,7 +219,7 @@ namespace Lab3
                 }
 
                 //sorting(cr, h.getFocus());
-            }
+            
 
             Map.Markers.Add(cars[0].moveTo(h.getFocus()));
         }
