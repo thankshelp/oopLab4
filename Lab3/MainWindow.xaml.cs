@@ -25,6 +25,7 @@ namespace Lab3
     public partial class MainWindow : Window
     {
         List<CMapObject> objs = new List<CMapObject>();
+        List<CCar> cars = new List<CCar>();
 
         List<PointLatLng> pts = new List<PointLatLng>();
 
@@ -72,28 +73,7 @@ namespace Lab3
 
                 //pts.Add(point);
 
-                double distance1;
-                double distance2;
-
-                for (int i = 0; i < objs.Count; i++)
-                {
-                    int min_i = i;
-
-                    for (int j = i + 1; j < objs.Count; j++)
-                    {
-                        distance1 = objs[j].getDistance(point);
-                        distance2 = objs[min_i].getDistance(point);
-
-                        if (distance2 > distance1)
-                        {
-                            min_i = j;
-                        }
-                    }
-
-                    CMapObject t = objs[i];
-                    objs[i] = objs[min_i];
-                    objs[min_i] = t;
-                }
+                sorting(objs, point);
 
                 objectList.Items.Clear();
 
@@ -117,6 +97,7 @@ namespace Lab3
                         {
                             car = new CCar(objTitle.Text, point, Map);
                             objs.Add(car);
+                            cars.Add(car);
                             carMarker = car.getMarker();
 
                             if (h != null)
@@ -196,28 +177,7 @@ namespace Lab3
             {
                 PointLatLng p = objs[objectList.SelectedIndex + 1].getFocus();
 
-                double distance1;
-                double distance2;
-
-                for (int n = 0; n < objs.Count; n++)
-                {
-                    int min_i = n;
-
-                    for (int j = n + 1; j < objs.Count; j++)
-                    {
-                        distance1 = objs[j].getDistance(p);
-                        distance2 = objs[min_i].getDistance(p);
-
-                        if (distance2 > distance1)
-                        {
-                            min_i = j;
-                        }
-                    }
-
-                    CMapObject t = objs[n];
-                    objs[n] = objs[min_i];
-                    objs[min_i] = t;
-                }
+                sorting(objs, p);
 
                 objectList.Items.Clear();
 
@@ -233,7 +193,35 @@ namespace Lab3
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Map.Markers.Add(car.moveTo(h.getFocus()));
+            foreach(CCar cr in cars)
+            {
+                double distance1;
+                double distance2;
+
+                for (int n = 0; n < cars.Count; n++)
+                {
+                    int min_i = n;
+
+                    for (int j = n + 1; j < cars.Count; j++)
+                    {
+                        distance1 = cars[j].getDistance(p);
+                        distance2 = cars[min_i].getDistance(p);
+
+                        if (distance2 > distance1)
+                        {
+                            min_i = j;
+                        }
+                    }
+
+                    CCar t = cars[n];
+                    cars[n] = cars[min_i];
+                    cars[min_i] = t;
+                }
+
+                //sorting(cr, h.getFocus());
+            }
+
+            Map.Markers.Add(cars[0].moveTo(h.getFocus()));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -257,28 +245,7 @@ namespace Lab3
             {
                 Map.Position = p;
 
-                double distance1;
-                double distance2;
-
-                for (int n = 0; n < objs.Count; n++)
-                {
-                    int min_i = n;
-
-                    for (int j = n + 1; j < objs.Count; j++)
-                    {
-                        distance1 = objs[j].getDistance(p);
-                        distance2 = objs[min_i].getDistance(p);
-
-                        if (distance2 > distance1)
-                        {
-                            min_i = j;
-                        }
-                    }
-
-                    CMapObject t = objs[n];
-                    objs[n] = objs[min_i];
-                    objs[min_i] = t;
-                }
+                sorting(objs, p);
 
                 objectList.Items.Clear();
 
@@ -299,6 +266,34 @@ namespace Lab3
                     }
                 }
             }
+        }
+
+        public List<CMapObject> sorting(List<CMapObject> l, PointLatLng p)
+        {
+            double distance1;
+            double distance2;
+
+            for (int n = 0; n < l.Count; n++)
+            {
+                int min_i = n;
+
+                for (int j = n + 1; j < l.Count; j++)
+                {
+                    distance1 = l[j].getDistance(p);
+                    distance2 = l[min_i].getDistance(p);
+
+                    if (distance2 > distance1)
+                    {
+                        min_i = j;
+                    }
+                }
+
+                CMapObject t = l[n];
+                l[n] = l[min_i];
+                l[min_i] = t;
+            }
+
+            return l;
         }
     }
 }
