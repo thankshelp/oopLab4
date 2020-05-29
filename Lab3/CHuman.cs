@@ -61,6 +61,7 @@ namespace Lab3
                 {
                     Width = 32, // ширина маркера
                     Height = 32, // высота маркера
+                    Margin = new System.Windows.Thickness(-20, -20, 0, 0),
                     ToolTip = this.getTitle(), // всплывающая подсказка
                     Source = new BitmapImage(new Uri("pack://application:,,,/image/pepe.png")) // картинка
                 }

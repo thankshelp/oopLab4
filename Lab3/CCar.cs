@@ -12,6 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Numerics;
+using System.Windows.Media;
 
 namespace Lab3
 {
@@ -20,6 +21,7 @@ namespace Lab3
         private PointLatLng point;
         private CRoute route;
         private CHuman pass;
+
 
         GMapMarker carMarker;
         GMapControl gMap = null;
@@ -64,10 +66,12 @@ namespace Lab3
                     Width = 40, // ширина маркера
                     Height = 40, // высота маркера
                     ToolTip = this.getTitle(), // всплывающая подсказка
+                    Margin = new System.Windows.Thickness(-20,-20,0,0),
                     Source = new BitmapImage(new Uri("pack://application:,,,/image/bible.png")) // картинка
                 }
             };
 
+            marker.ZIndex = 100;
             carMarker = marker;
 
             return marker;
@@ -111,8 +115,7 @@ namespace Lab3
                     }
                 }
             }
-
-
+       
             Thread newThread = new Thread(new ThreadStart(MoveByRoute));
             newThread.Start();
            
@@ -121,19 +124,43 @@ namespace Lab3
 
         private void MoveByRoute()
         {
+            double cAngle = 0;
             // последовательный перебор точек маршрута
-            foreach (var point in epoints) //route.getPoints())
+            //foreach (var point in epoints) //route.getPoints())
+            for(int i =0; i < epoints.Count; i++)
             {
+                var point = epoints[i];
                 // делегат, возвращающий управление в главный поток
                 Application.Current.Dispatcher.Invoke(delegate {
+
+                    if (i < epoints.Count - 10)
+                    {
+                        var nextPoint = epoints[i + 10];
+
+                        double latDiff = nextPoint.Lat - point.Lat;
+                        double lngDiff = nextPoint.Lng - point.Lng;
+                        // вычисление угла направления движения
+                        // latDiff и lngDiff - катеты прямоугольного треугольника
+                        double angle = Math.Atan2(lngDiff, latDiff) * 180.0 / Math.PI;
+
+                        // установка угла поворота маркера
+
+                        if (Math.Abs(angle - cAngle) > 11) //|| (a - angle < 0))
+                        {
+                            cAngle = angle;
+                            carMarker.Shape.RenderTransform = new RotateTransform( angle,20,20 );
+                        }
+                    }
                     // изменение позиции маркера
                     carMarker.Position = point;
                     this.point = point;
 
                     if (pass != null)
                     {
-                        pass.setPosition(point);
+                        pass.setPosition(point); 
                         pass.humMarker.Position = point;
+                        pass.humMarker.Shape.RenderTransform = new RotateTransform (cAngle,20,20);
+                      
                     }
                 });
                 // задержка 5 мс
@@ -147,6 +174,7 @@ namespace Lab3
             }
             else
             {
+                MessageBox.Show("Высаживаемся!");
                 pass = null;
             }
         }

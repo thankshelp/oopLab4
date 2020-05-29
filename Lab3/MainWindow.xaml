@@ -14,7 +14,6 @@
             <ListBoxItem Content="Human"/>
             <ListBoxItem Content="Location"/>
             <ListBoxItem Content="Area"/>
-            <ListBoxItem Content="Rout"/>
         </ComboBox>
         <TextBox x:Name="objTitle" HorizontalAlignment="Left" Height="37" Margin="833,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" FontSize="18"/>
         <Label Content="Object_Title" HorizontalAlignment="Left" Margin="833,88,0,0" VerticalAlignment="Top" Width="128" Height="36" FontSize="20"/>

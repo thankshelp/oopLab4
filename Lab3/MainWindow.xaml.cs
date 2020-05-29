@@ -29,7 +29,7 @@ namespace Lab3
 
         List<PointLatLng> pts = new List<PointLatLng>();
 
-        CCar car = null;
+        //CCar car = null;
         CHuman h = null;
         CLocation l = null;
         public GMapMarker carMarker = null;
@@ -94,24 +94,11 @@ namespace Lab3
                     if (objType.SelectedIndex == 0)
                     {
                         //if (car == null)
-                        
-                            car = new CCar(objTitle.Text, point, Map);
+
+                            CCar car = new CCar(objTitle.Text, point, Map);
                             objs.Add(car);
                             cars.Add(car);
                             carMarker = car.getMarker();
-
-                            if (h != null)
-                            {
-                                car.Arrived += h.CarArrived;
-                                h.passSeated += car.passSeated;
-
-                            }
-                            else
-                            {
-                                car.setPosition(point);
-                                carMarker.Position = point;
-                            }
-                        
                     }
 
                     if (objType.SelectedIndex == 1)
@@ -121,17 +108,10 @@ namespace Lab3
                             h = new CHuman(objTitle.Text, point);
                             objs.Add(h);
                             humMarker = h.getMarker();
-
-                            if (car != null)
-                            {
-                                car.Arrived += h.CarArrived;
-                                h.passSeated += car.passSeated;
-                            }
-                            else
-                            {
-                                h.setPosition(point);
-                                humMarker.Position = point;
-                            }
+                            
+                            h.setPosition(point);
+                            humMarker.Position = point;
+                            
                         }
 
                     }
@@ -218,8 +198,10 @@ namespace Lab3
                     cars[min_i] = t;
                 }
 
-                //sorting(cr, h.getFocus());
-            
+            //sorting(cr, h.getFocus());
+
+            cars[0].Arrived += h.CarArrived;
+            h.passSeated += cars[0].passSeated;
 
             Map.Markers.Add(cars[0].moveTo(h.getFocus()));
         }
